@@ -3,7 +3,7 @@ import {Header} from 'semantic-ui-react'
 
 const Home = () => (
   <>
-    <Header as='h1'>Your Posts</Header>
+    <Header as='h1'>Failbook Home</Header>
   </>
 );
 
