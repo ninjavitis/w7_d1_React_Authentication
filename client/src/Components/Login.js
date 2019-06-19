@@ -37,7 +37,7 @@ class Login extends React.Component {
           required
           name="password"
           value={password}
-          placeholder="iamgod"
+          placeholder="password"
           onChange={this.handleChange}
           />
           <Segment basic textAlign="center">

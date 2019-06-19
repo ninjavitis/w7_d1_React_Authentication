@@ -1,9 +1,8 @@
 class Api::PostsController < ApplicationController
-  before_action :set_user
-  before_action :set_post, only:[:index, :show, :update, :destroy]
+  before_action :set_post, only:[:show, :update, :destroy]
   
   def index
-    render json: @user.posts
+    render json: current_user.posts
   end
 
   def show
@@ -11,7 +10,7 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(postParams)
+    post = current_user.posts.new(postParams)
     if post.save
       render json: post
     else
@@ -20,6 +19,7 @@ class Api::PostsController < ApplicationController
   end
 
   def update
+    binding.pry
     if @post.update(postParams)
       render json: @post
     else
@@ -32,17 +32,13 @@ class Api::PostsController < ApplicationController
   end
 
   private 
-  
-  def set_user
-    @user = User.find(params[:User_id])
-  end
 
   def set_post
-    @post = Post.find[:id]
+    @post = Post.find(params[:id])
   end
 
   def postParams
-    params.require(:post).permit(:title,:body, :likes, :User_id)
+    params.require(:post).permit(:title,:body)
   end
 
 end
