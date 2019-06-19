@@ -9,5 +9,8 @@ Rails.application.routes.draw do
   namespace :api do
     resources :profiles, only: [:index,:update]
     get 'my_friends', to: 'profiles#my_friends'
+
+    resources :users do
+      resources :posts
   end
 end
