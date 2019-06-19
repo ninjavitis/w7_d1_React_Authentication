@@ -14,6 +14,9 @@ class Navbar extends React.Component {
             <span>{user.name}</span>
             <Image src={user.image} avatar/>
           </Menu.Item>
+          <Link to="/posts/">
+            <Menu.Item name="Posts"/>
+          </Link>
           <Menu.Item 
             name="Logout"
             onClick={()=>handleLogout(this.props.history)}
