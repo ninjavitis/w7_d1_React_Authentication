@@ -3,7 +3,7 @@ import {AuthConsumer} from '../Providers/AuthProvider'
 import {Form, Button, Header, Segment} from 'semantic-ui-react'
 
 class Register extends React.Component {
-  state = { email:'', password:'', passwordConfirmation:'' }
+  state = { name:"", nickname:"", image:"", email:'', password:'', passwordConfirmation:'' }
   
   handleChange=(e)=>{
     const {name, value} =e.target
@@ -13,28 +13,53 @@ class Register extends React.Component {
   handleSubmit=(e)=>{
     e.preventDefault()
     // Destructure state
-    const {email, password, passwordConfirmation} = this.state
+    const {name, nickname, image, email, password, passwordConfirmation} = this.state
 
     // destructure the auth object provided via AuthConsumer
     const {auth: {handleRegister}, history} = this.props
+    
 
     if (password === passwordConfirmation){
-      handleRegister({ email, password, passwordConfirmation}, history)
+      handleRegister({ name, nickname, image, email, password, passwordConfirmation}, history)
     } else {
       alert('Passwords must match')
     }
   }
   
   render() {
-    const {email, password, passwordConfirmation} =this.state
+    const {name, nickname, image, email, password, passwordConfirmation} =this.state
     return (
       <Segment basic>
         <Header as="h1" textAlign="center">Register</Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input 
-          label="Email"
+          label="Name"
           required
           autoFocus
+          name='name'
+          value={name}
+          placeholder='name'
+          onChange={this.handleChange}
+          />
+          <Form.Input 
+          label="Nickname"
+          required
+          name='nickname'
+          value={nickname}
+          placeholder='nickname'
+          onChange={this.handleChange}
+          />
+          <Form.Input 
+          label="Image"
+          required
+          name='image'
+          value={image}
+          placeholder='image'
+          onChange={this.handleChange}
+          />
+          <Form.Input 
+          label="Email"
+          required
           name='email'
           value={email}
           placeholder='email'

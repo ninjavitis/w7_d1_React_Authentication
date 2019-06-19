@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, withRouter} from 'react-router-dom'
-import {Menu} from 'semantic-ui-react'
+import {Menu, Image} from 'semantic-ui-react'
 import {AuthConsumer, } from '../Providers/AuthProvider'
 
 class Navbar extends React.Component {
@@ -10,6 +10,10 @@ class Navbar extends React.Component {
     if(user){
       return(
         <Menu.Menu position="right">
+          <Menu.Item>
+            <span>{user.name}</span>
+            <Image src={user.image} avatar/>
+          </Menu.Item>
           <Menu.Item 
             name="Logout"
             onClick={()=>handleLogout(this.props.history)}
@@ -46,16 +50,14 @@ class Navbar extends React.Component {
 }
 
 export class ConnectedNavbar extends React.Component {
-  state = {  }
   render() {
     return (
       <AuthConsumer>
-        {authObject=>
+        { authObject=>
         <Navbar {...this.props} auth={authObject}/>
         }
       </AuthConsumer>
     );
-    debugger
   }
 }
 

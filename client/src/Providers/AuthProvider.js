@@ -9,16 +9,16 @@ export class AuthProvider extends React.Component {
 
   handleLogin = (user, history) => (
     axios.post('/api/auth/sign_in', user)
-      .then(res => {this.setState({user:res.data.data})
-      history.push("/")  
+    .then(res => {this.setState({user:res.data.data})
+    history.push("/")  
     })
     .catch(err => {console.log(err)})
   );
   
   handleRegister = (user, history) => (
     axios.post('/api/auth', user)
-      .then(res => { this.setState({user:res.data.data})
-      history.push('/')
+    .then(res => { this.setState({user:res.data.data})
+    history.push('/')
     })
   .catch(err=>console.log(err))
   );
