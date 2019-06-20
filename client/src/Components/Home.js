@@ -2,7 +2,7 @@ import React from 'react';
 import {Header, Card, Image, Button, Icon} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-import Login from './Login'
+// import Login from './Login'
 
 class Home extends React.Component {
   state = { profiles: [], };

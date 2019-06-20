@@ -5,7 +5,7 @@ import {AuthConsumer, } from '../Providers/AuthProvider'
 
 class Navbar extends React.Component {
   rightNavItems=()=>{
-    const {auth:{user, handleLogout}, location} = this.props
+    const {auth:{user, handleLogout},location} = this.props
 
     if(user){
       return(
@@ -27,10 +27,10 @@ class Navbar extends React.Component {
       return(
         <Menu.Menu position="right">
           <Link to="/login">
-            <Menu.Item name="Login" active={this.props.location.pathname==='/login'}/>
+            <Menu.Item name="Login" active={location.pathname==='/login'}/>
           </Link>
           <Link to="/register">
-            <Menu.Item name="Register" active={this.props.location.pathname==='/register'}/>
+            <Menu.Item name="Register" active={location.pathname==='/register'}/>
           </Link>
         </Menu.Menu>
       )

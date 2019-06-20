@@ -16,7 +16,7 @@ const Post = (props) => {
   useEffect(()=>{
     setTitle(props.title)
     setBody(props.body)
-  },[])
+  },[props.title, props.body])
 
   const deletePost =()=>{
     axios.delete(`/api/posts/${props.id}`)

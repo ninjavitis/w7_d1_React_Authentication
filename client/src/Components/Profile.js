@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import AuthConsumer from '../Providers/AuthProvider'
+// import AuthConsumer from '../Providers/AuthProvider'
 import axios from 'axios';
 import {Image} from 'semantic-ui-react'
 
