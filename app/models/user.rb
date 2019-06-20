@@ -7,10 +7,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  ### HAS ###
   has_many :posts
 
+  ### SERIALIZATION ###
+  serialize :top_profiles,Array
   serialize :liked_profiles,Array
 
+  ### MODEL FUNCTIONS ###
   def self.random_profile(ids)
     ids = ids.empty? ? [0]:ids
     Profile.where("id NOT IN (?)", ids).order("RANDOM()")
@@ -20,6 +24,12 @@ class User < ActiveRecord::Base
     ids = ids.empty? ? [0]:ids
     Profile.where("id IN (?)",ids)
   end
+
+  def self.top(ids)
+    ids = ids.empty? ? [0]:ids
+    Profile.where("id IN (?)",ids)
+  end
+
 
 
 end

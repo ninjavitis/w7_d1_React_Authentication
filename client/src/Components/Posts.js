@@ -14,10 +14,6 @@ const Posts = (props) => {
     .then(res=>{setPosts(res.data)})
   },[])
 
- const deletePost = (id) => {
-  axios.delete(`/api/posts/${id}`)
-  props.history.push('/posts')
-}
 
   const renderPosts=()=>{
     return posts.map(post =>

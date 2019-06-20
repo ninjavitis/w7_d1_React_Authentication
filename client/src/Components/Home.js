@@ -2,6 +2,7 @@ import React from 'react';
 import {Header, Card, Image, Button, Icon} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import Login from './Login'
 
 class Home extends React.Component {
   state = { profiles: [], };
@@ -33,6 +34,10 @@ class Home extends React.Component {
     .then(()=> this.setState({profiles:profiles.filter(c=>c.id !== id)}))
   }
 
+  star=(id)=>{
+    
+  }
+
   render() {
     const profile = this.sample()
     if (profile){
@@ -42,16 +47,21 @@ class Home extends React.Component {
           <Header as="h1">Failbook</Header>
           <br />
           <Card key={profile.id}>
+          <Link to={`/profile/${profile.id}`}>
             <Image src={profile.image} />
             <Card.Content>
               <Card.Header>{profile.name}</Card.Header>
             </Card.Content>
+          </Link>
             <Card.Content extra>
               <Button color ="red" icon basic onClick={()=> this.downVote(profile.id)}>
                 <Icon name="thumbs down"/>
               </Button>
               <Button color ="green" icon basic onClick={()=> this.upVote(profile.id)}>
                 <Icon name="thumbs up"/>
+              </Button>
+              <Button color ="yellow" icon basic onClick={()=> this.star(profile.id)}>
+                <Icon name="star"/>
               </Button>
             </Card.Content>
           </Card>
@@ -64,7 +74,8 @@ class Home extends React.Component {
       )
     } else {
       return(
-        <Header as="h1" textalign="center">You seem to be all alone in the universe...</Header>
+        // <Login/>
+        <Header as="h1" textalign="center">Log in to start rating your friends!</Header>
       )
       
     }
