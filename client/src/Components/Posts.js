@@ -12,7 +12,7 @@ const Posts = (props) => {
   useEffect(()=>{
     axios.get('/api/posts')
     .then(res=>{setPosts(res.data)})
-  },[posts])
+  },[])
 
  const deletePost = (id) => {
   axios.delete(`/api/posts/${id}`)
@@ -30,6 +30,7 @@ const Posts = (props) => {
     <>
       <PostForm/>
       <br/>
+      <Header as="h3" textAlign="center">Must be manually reloaded after a new or deleted post.  The only way I could find to reload resulted in an infinite loop.</Header>
       <br/>
       <Table>
         <Table.Body>
