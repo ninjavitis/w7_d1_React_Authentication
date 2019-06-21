@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 // import AuthConsumer from '../Providers/AuthProvider'
 import axios from 'axios';
-import {Image} from 'semantic-ui-react'
+import Posts from './Posts'
+import {Image, Card, Button, Icon, } from 'semantic-ui-react'
 
 const Profile = (props) => {
   const [name, setName] = useState('')
@@ -18,8 +19,7 @@ const Profile = (props) => {
 
 return(
   <div>
-    <Image src={image}/>
-    {name}
+    <Posts id={props.match.params.id}/>
   </div>
 
 )

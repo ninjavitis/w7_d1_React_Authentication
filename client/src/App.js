@@ -26,7 +26,6 @@ const App = () => {
           <ProtectedRoute exact path ="/profile/:id" component={Profile} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-
           <Route component={NoMatch} />
         </Switch>
       </Container>

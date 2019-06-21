@@ -19,4 +19,8 @@ class Api::ProfilesController < ApplicationController
   def top_friends
     render json: User.top(current_user.top_profiles)
   end
+
+  def posts
+    render json: Profile.posts(params[:id])
+  end
 end

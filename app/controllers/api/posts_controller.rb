@@ -3,7 +3,7 @@ class Api::PostsController < ApplicationController
   
   def index
     render json: current_user.posts
-  end
+  end    
 
   def show
     render json: @post
@@ -30,6 +30,8 @@ class Api::PostsController < ApplicationController
   def destroy
     @post.delete
   end
+
+ 
 
   private 
 

@@ -24,21 +24,21 @@ class Login extends React.Component {
         <Header as='h1' textAlign='center'></Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input 
-          label="email"
-          autoFocus
-          required
-          name="email"
-          value={email}
-          placeholder="you@arethebest.com"
-          onChange={this.handleChange}
+            label="email"
+            autoFocus
+            required
+            name="email"
+            value={email}
+            placeholder="you@arethebest.com"
+            onChange={this.handleChange}
           />
           <Form.Input 
-          label="password"
-          required
-          name="password"
-          value={password}
-          placeholder="password"
-          onChange={this.handleChange}
+            label="password"
+            required
+            name="password"
+            value={password}
+            placeholder="password"
+            onChange={this.handleChange}
           />
           <Segment basic textAlign="center">
             <Button primary type='submit'>Submit</Button>

@@ -12,25 +12,25 @@ const Post = (props) => {
   const [tempTitle, setTempTitle] = useState('')
   const [tempBody, setTempBody] = useState('')
   const [editing, setEditing] = useState(false)
+  const [id, setId] = useState(0)
 
   useEffect(()=>{
     setTitle(props.title)
     setBody(props.body)
-  },[props.title, props.body])
+    setId(props.id)
+  },[props.title, props.body, props.id])
 
-  const deletePost =()=>{
-    axios.delete(`/api/posts/${props.id}`)
-  }
+  // const deletePost =()=>{
+  //   axios.delete(`/api/posts/${props.id}`)
+  // }
 
-  
   const handleSubmit=(e)=>{
     debugger
     e.preventDefault()
     setTitle(tempTitle)
     setBody(tempBody)
     setEditing(false)
-    let params = {title:tempTitle,body:tempBody}
-    axios.put(`/api/posts/${props.id}`,params)
+    axios.put(`/api/posts/${props.id}`,{tempTitle,tempBody})
   }
 
   const editForm=()=>{
@@ -68,7 +68,7 @@ const Post = (props) => {
           editing ?
           <Button icon color='green' onClick={handleSubmit}><Icon name='save' /></Button>
           :
-          <Button icon color='red' onClick={deletePost}><Icon name="trash"/></Button>
+          <Button icon color='red' onClick={()=>props.deletePost(id)}><Icon name="trash"/></Button>
         }
       </Table.Cell>
       {editForm()}

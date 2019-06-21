@@ -44,8 +44,6 @@ class Home extends React.Component {
       return(
         <div>
           <br />
-          <Header as="h1">Failbook</Header>
-          <br />
           <Card key={profile.id}>
           <Link to={`/profile/${profile.id}`}>
             <Image src={profile.image} />

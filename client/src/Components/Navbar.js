@@ -4,6 +4,46 @@ import {Menu, Image} from 'semantic-ui-react'
 import {AuthConsumer, } from '../Providers/AuthProvider'
 
 class Navbar extends React.Component {
+  leftNavItems=()=>{
+    const {auth:{user}} = this.props
+
+    if(user){
+      return(
+        <>
+          <Link to="/">
+            <Menu.Item
+              name="FAILBOOK"
+              active={this.props.location.pathname === "/"}
+              />
+          </Link>
+          <Link to="/MyFriends">
+            <Menu.Item
+              name="My Friends"
+              active={this.props.location.pathname === "/MyFriends"}
+              />
+          </Link>
+          <Link to="/posts">
+            <Menu.Item
+              name="Posts"
+              active={this.props.location.pathname === "/posts"}
+              />
+          </Link>
+        </>
+      )
+    } else {
+      return(
+        <Link to="/">
+          <Menu.Item
+            name="FAILBOOK"
+            active={this.props.location.pathname === "/"}
+          />
+        </Link>
+      )
+    }
+  }
+
+
+
   rightNavItems=()=>{
     const {auth:{user, handleLogout},location} = this.props
 
@@ -14,9 +54,6 @@ class Navbar extends React.Component {
             <span>{user.name}</span>
             <Image src={user.image} avatar/>
           </Menu.Item>
-          <Link to="/posts/">
-            <Menu.Item name="Posts"/>
-          </Link>
           <Menu.Item 
             name="Logout"
             onClick={()=>handleLogout(this.props.history)}
@@ -40,12 +77,8 @@ class Navbar extends React.Component {
   render() {
     return (
       <Menu pointing secondary>
-      <Link to="/">
-        <Menu.Item
-          name="FAILBOOK"
-          active={this.props.location.pathname === "/"}
-        />
-      </Link>
+        {this.leftNavItems()}
+      
       {this.rightNavItems()}
     </Menu>
     );
