@@ -22,12 +22,12 @@ class User < ActiveRecord::Base
 
   def self.liked(ids)
     ids = ids.empty? ? [0]:ids
-    Profile.where("id IN (?)",ids)
+    User.where("id IN (?)",ids)
   end
 
   def self.top(ids)
     ids = ids.empty? ? [0]:ids
-    Profile.where("id IN (?)",ids)
+    User.where("id IN (?)",ids)
   end
 
 

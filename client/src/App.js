@@ -23,7 +23,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <ProtectedRoute exact path="/posts" component={Posts} />
           <ProtectedRoute exact path="/MyFriends" component={MyFriends} />
-          <ProtectedRoute exact path ="/profile/:id" component={Profile} />
+          <Route exact path ="/users/:id" component={Profile} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route component={NoMatch} />

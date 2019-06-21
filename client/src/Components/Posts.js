@@ -11,7 +11,7 @@ const Posts = (props) => {
   const [deleted, setDeleted] = useState(false)
 
   useEffect(()=>{
-    axios.get(`/api/profile_posts/${props.id}`)
+    axios.get(`/api/user/${props.id}/posts`)
     .then(res=>{setPosts(res.data)})
   },[body, title, deleted])
 
@@ -26,9 +26,10 @@ const Posts = (props) => {
   }
 
   const renderPosts=()=>{
-    return posts.map(post =>
+    return (
+      posts.map(post =>
       <Post key={post.id} title={post.title} body={post.body} id={post.id} deletePost={deletePost}/>
-    )
+    ))
   }
 
   return (
@@ -43,7 +44,7 @@ const Posts = (props) => {
           <br/>
           <Table>
             <Table.Body>
-              {renderPosts}
+              {renderPosts()}
             </Table.Body>
           </Table> 
         </>

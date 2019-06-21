@@ -5,33 +5,37 @@ import axios from 'axios'
 // import Login from './Login'
 
 class Home extends React.Component {
-  state = { profiles: [], };
+  state = { users: [], };
   
   componentDidMount() {
-    axios.get('/api/profiles')
-      .then(res => this.setState({ profiles: res.data, }))
+    axios.get('/api/users')
+    .then(res => {
+      this.setState({ users: res.data, })
+    }
+    )
   }
-  
-  sample = () => {
-    const { profiles, } = this.state;
 
-    if (profiles.length) {
-      const index = Math.floor(Math.random() * profiles.length);
-      return profiles[index];
+
+  sample = () => {
+    const { users, } = this.state;
+
+    if (users.length) {
+      const index = Math.floor(Math.random() * users.length);
+      return users[index];
     } else {
       return null;
     }
   }
 
   downVote =(id)=>{
-    const {profiles} = this.state
-    this.setState({profiles: profiles.filter(c=> c.id !== id)})
+    const {users} = this.state
+    this.setState({users: users.filter(c=> c.id !== id)})
   }
 
   upVote =(id)=>{
-    const {profiles} =this.state
-    axios.put(`/api/profiles/${id}`)
-    .then(()=> this.setState({profiles:profiles.filter(c=>c.id !== id)}))
+    const {users} =this.state
+    axios.put(`/api/users/${id}`)
+    .then(()=> this.setState({users:users.filter(c=>c.id !== id)}))
   }
 
   star=(id)=>{
@@ -39,26 +43,26 @@ class Home extends React.Component {
   }
 
   render() {
-    const profile = this.sample()
-    if (profile){
+    const user = this.sample()
+    if (user){
       return(
         <div>
           <br />
-          <Card key={profile.id}>
-          <Link to={`/profile/${profile.id}`}>
-            <Image src={profile.image} />
+          <Card key={user.id}>
+          <Link to={`/user/${user.id}`}>
+            <Image src={user.image} />
             <Card.Content>
-              <Card.Header>{profile.name}</Card.Header>
+              <Card.Header>{user.name}</Card.Header>
             </Card.Content>
           </Link>
             <Card.Content extra>
-              <Button color ="red" icon basic onClick={()=> this.downVote(profile.id)}>
+              <Button color ="red" icon basic onClick={()=> this.downVote(user.id)}>
                 <Icon name="thumbs down"/>
               </Button>
-              <Button color ="green" icon basic onClick={()=> this.upVote(profile.id)}>
+              <Button color ="green" icon basic onClick={()=> this.upVote(user.id)}>
                 <Icon name="thumbs up"/>
               </Button>
-              <Button color ="yellow" icon basic onClick={()=> this.star(profile.id)}>
+              <Button color ="yellow" icon basic onClick={()=> this.star(user.id)}>
                 <Icon name="star"/>
               </Button>
             </Card.Content>

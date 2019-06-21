@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {Card, Divider, Image, Button, Icon} from 'semantic-ui-react'
+import Posts from './Posts'
+import ProfileCard from './ProfileCard'
 
 
 const MyFriends = (props) => {
@@ -13,25 +15,29 @@ const MyFriends = (props) => {
   },[])
 
   return(
-    <Card.Group itemsPerRow={4}>
+    <>
+      <Card.Group itemsPerRow={4}>
         {friends.map( friend=>
-          <Card key={friend.id}>
-            <Link to={`/profile/${friend.id}`}>
-            <Image src={friend.image}/>
-            <Card.Content>
-              <Divider />
-              <Card.Header>{friend.name}</Card.Header>
-            </Card.Content>
-            </Link>
-            <Button color ="yellow" icon basic onClick={()=> props.star(friend.id)}>
-              <Icon name="star"/>
-            </Button>
-            <Button color ="red" icon basic onClick={()=> props.location.downVote(friend.id)}>
-              <Icon name="thumbs down"/>
-            </Button>
-          </Card>
+        <ProfileCard key={friend.id} id={friend.id} name={friend.name} image={friend.image}/>
+          // <Card key={friend.id}>
+          //   <Link to={`/profile/${friend.id}`}>
+          //   <Image src={friend.image}/>
+          //   <Card.Content>
+          //     <Divider />
+          //     <Card.Header>{friend.name}</Card.Header>
+          //   </Card.Content>
+          //   </Link>
+          //   <Button color ="yellow" icon basic onClick={()=> props.star(friend.id)}>
+          //     <Icon name="star"/>
+          //   </Button>
+          //   <Button color ="red" icon basic onClick={()=> props.location.downVote(friend.id)}>
+          //     <Icon name="thumbs down"/>
+          //   </Button>
+          // </Card>
         )}
       </Card.Group>
+
+    </>
   )
 };
 
