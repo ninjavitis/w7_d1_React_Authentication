@@ -22,9 +22,14 @@ class Navbar extends React.Component {
               active={this.props.location.pathname === "/MyFriends"}
               />
           </Link>
-          <Link to="/posts">
+          <Link to={{
+        pathname:`/users/${user.id}`,
+        state:{name:user.name, 
+        image:user.image, 
+        profile_id:user.id}
+        }}>
             <Menu.Item
-              name="Posts"
+              name="My Posts"
               active={this.props.location.pathname === "/posts"}
               />
           </Link>

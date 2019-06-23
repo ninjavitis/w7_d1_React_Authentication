@@ -15,7 +15,6 @@ class Home extends React.Component {
     )
   }
 
-
   sample = () => {
     const { users, } = this.state;
 
@@ -49,7 +48,7 @@ class Home extends React.Component {
         <div>
           <br />
           <Card key={user.id}>
-          <Link to={`/user/${user.id}`}>
+          <Link to={`/users/${user.id}`}>
             <Image src={user.image} />
             <Card.Content>
               <Card.Header>{user.name}</Card.Header>

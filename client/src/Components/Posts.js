@@ -9,9 +9,10 @@ const Posts = (props) => {
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
   const [deleted, setDeleted] = useState(false)
+  const [profileId, setProfileId] = useState(props.profileId)
 
   useEffect(()=>{
-    axios.get(`/api/user/${props.id}/posts`)
+    axios.get(`/api/users/${profileId}/posts`)
     .then(res=>{setPosts(res.data)})
   },[body, title, deleted])
 

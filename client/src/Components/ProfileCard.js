@@ -7,7 +7,12 @@ import {Link} from 'react-router-dom'
 const ProfileCard = (props) => {
   return(
     <Card key={props.id}>
-      <Link to={{pathname:`/users/${props.id}`,state:{name:props.name, image:props.image}}}>
+      <Link to={{
+        pathname:`/users/${props.id}`,
+        state:{name:props.name, 
+        image:props.image, 
+        profile_id:props.id}
+        }}>
       <Image src={props.image}/>
       <Card.Content>
         <Divider />
